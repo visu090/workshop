@@ -29,7 +29,11 @@ function getItemWithBarCode(event) {
     for (index in data_JSON) {
         if (barcode == data_JSON[index].id) {
             // found the item
-            var details = data_JSON[index].description
+            var details = "id: " + data_JSON[index].id
+            details += "<br>"
+            details += data_JSON[index].item
+            details += "<br>"
+            details += data_JSON[index].description
             details += "<br>"
             details += "Rs. " + data_JSON[index].price
 
