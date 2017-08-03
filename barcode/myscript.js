@@ -1,5 +1,5 @@
-// data
-var data_JSON;
+// List of items
+var items;
 
 // To load contents of a file
 function XHR(file, callback){
@@ -15,42 +15,64 @@ function XHR(file, callback){
 
 // The initial method called on page load
 function init() {
- XHR('data.json', function(response) {
-  // Parse JSON string into object
-    data_JSON = JSON.parse(response);
- });
+    XHR('data.json', function(response) {
+        // Parse JSON string into object
+        items = JSON.parse(response);
+        });
+}
+
+// To find the item with the barcode in the array of items
+// return
+// position in the array if found
+// otherwise return -1
+function findIndexOfItemWithBarcode(barcode) {
+    
+    for (index in items) {
+        console.log(items[index].id)
+        if (barcode == items[index].id) {
+            // found the item
+            return index
+        }
+    }
+    return -1
+}
+
+function updateDetailsOfItemAtIndex(index) {
+    
+    var details = "id: " + items[index].id
+    details += "<br>"
+    details += items[index].item
+    details += "<br>"
+    details += items[index].description
+    details += "<br>"
+    details += "Rs. " + items[index].price
+    
+    document.getElementById("itemDetails").innerHTML = details
+//    console.log("id: " + items[index].id)
+//    console.log("item: " + items[index].description)
+//    console.log("price: " + items[index].price)
 }
 
 function getItemWithBarCode(event) {
-
-    event.preventDefault();
-	var barcode = document.getElementById("barcode").value
+    
+    event.preventDefault()
+    
+    // read the barcode id
+    var barcode = document.getElementById("barcode").value
     document.getElementById("barcode").value = ''
-    for (index in data_JSON) {
-        if (barcode == data_JSON[index].id) {
-            // found the item
-            var details = "id: " + data_JSON[index].id
-            details += "<br>"
-            details += data_JSON[index].item
-            details += "<br>"
-            details += data_JSON[index].description
-            details += "<br>"
-            details += "Rs. " + data_JSON[index].price
-
-            document.getElementById("itemDetails").innerHTML = details
-            // console.log("id: " + data_JSON[index].id)
-            // console.log("item: " + data_JSON[index].description)
-            // console.log("price: " + data_JSON[index].price)
-            return;
-        }
+    
+    var index = findIndexOfItemWithBarcode(barcode)
+    if (index != -1) {
+        // found the item
+        // update details
+        updateDetailsOfItemAtIndex(index)
+        return
+    } else {
+        // did not find any element
+        document.getElementById("itemDetails").innerHTML = "Not Found"
     }
-    // did not find any element
-    document.getElementById("itemDetails").innerHTML = "Not Found"
-	console.log(barcode);
+    console.log(barcode)
 }
-// response = readline();
-// print(response);
-// init();
 
 // Steps to load properly
 // lauch chrome using: option
