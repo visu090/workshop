@@ -38,9 +38,9 @@ function getItemWithBarCode(event) {
             details += "Rs. " + data_JSON[index].price
 
             document.getElementById("itemDetails").innerHTML = details
-            console.log("id: " + data_JSON[index].id)
-            console.log("item: " + data_JSON[index].description)
-            console.log("price: " + data_JSON[index].price)
+            // console.log("id: " + data_JSON[index].id)
+            // console.log("item: " + data_JSON[index].description)
+            // console.log("price: " + data_JSON[index].price)
             return;
         }
     }

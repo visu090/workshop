@@ -1,20 +1,38 @@
 [
 	{
-		"id" 	: "8901725135454",	
-		"item" 	: "Mom's Magic",
-		"description" : "Cashew & Almond",
-		"price" : 10
+		"id": "8902519001207",
+		"item": "Classmate Exercise Book",
+		"description": "160 pages",
+		"price": 65 
 	},
 	{
-		"id" 	: "8901719105913",	
-		"item" 	: "Hide & Seek",
-		"description" : "Now with More Chocolate Chips",
-		"price" : 25
+		"id": "X000FWZRU9",
+		"item": "BSC-101 STAR",
+		"description": "Advanced High Speed CCD Scanner",
+		"price": 2499
 	},
 	{
-		"id" 	: "8902982000189",	
-		"item" 	: "Artline157R",
-		"description" : "WHITEBOARD MARKER",
-		"price" : 300
+		"id": "8901324005820",
+		"item": "Apsara",
+		"description": "White Dustless Chalks",
+		"price": 20
+	},
+	{
+		"id": "20179484",
+		"item": "RFID Reader",
+		"description": "Reader with USB connection",
+		"price": 499
+	},
+	{
+		"id": "9780070495432",
+		"item": "The Complete Reference Java 2 Fifth edition",
+		"description": "Herbert Schildt, TATA McGRAW HILL",
+		"price": 340
+	},
+	{
+		"id": "8901725131340",
+		"item": "Sunfeast Farmlite Digestive",
+		"description": "Made from AASHIRVAAD Atta",
+		"price": 25
 	}
 ]
