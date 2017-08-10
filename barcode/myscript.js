@@ -1,85 +1,81 @@
-// List of items
-var items;
-
-// To load contents of a file
-function XHR(file, callback){
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function(){
-        if(xhr.readyState === 4 ){
-            callback(xhr.responseText);
-        }
-    }
-    xhr.open('GET', file, true);
-    xhr.send();
-}
+var list
 
 // The initial method called on page load
 function init() {
-    XHR('data.json', function(response) {
-        // Parse JSON string into object
-        items = JSON.parse(response);
-        });
-}
-
-// To find the item with the barcode in the array of items
-// return
-// position in the array if found
-// otherwise return -1
-function findIndexOfItemWithBarcode(barcode) {
-    
-    for (index in items) {
-        console.log(items[index].id)
-        if (barcode == items[index].id) {
-            // found the item
-            return index
-        }
-    }
-    return -1
-}
-
-function updateDetailsOfItemAtIndex(index) {
-    
-    var details = "id: " + items[index].id
-    details += "<br>"
-    details += items[index].item
-    details += "<br>"
-    details += items[index].description
-    details += "<br>"
-    details += "Rs. " + items[index].price
-    
-    document.getElementById("itemDetails").innerHTML = details
-//    console.log("id: " + items[index].id)
-//    console.log("item: " + items[index].description)
-//    console.log("price: " + items[index].price)
+    // load details from data.json file
+    loadDataAndParse('data.json')
 }
 
 function getItemWithBarCode(event) {
     
     event.preventDefault()
     
-    // read the barcode id
+    // read the barcode id, and clear it from UI
     var barcode = document.getElementById("barcode").value
     document.getElementById("barcode").value = ''
     
-    var index = findIndexOfItemWithBarcode(barcode)
-    if (index != -1) {
+    var details = "Not Found" 
+
+    var position = findWithBarcode(barcode)
+    if (position != -1) {
         // found the item
         // update details
-        updateDetailsOfItemAtIndex(index)
-        return
-    } else {
-        // did not find any element
-        document.getElementById("itemDetails").innerHTML = "Not Found"
+        details = detailsOfItem(position)
     }
-    console.log(barcode)
+
+    document.getElementById("itemDetails").innerHTML = details
 }
 
-// Steps to load properly
-// lauch chrome using: option
-// /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --allow-file-acss-from-files
+function loadDataAndParse(fileName) {
 
-// contains the necessary steps:
-// https://threejs.org/docs/#manual/introduction/How-to-run-thing-locally
+    function parseContents(fileContents) {
+        // Parse JSON string into object
+        list = JSON.parse(fileContents)
+        console.log(list)
+    }
 
-// for beaty search bar
-// https://codepen.io/huange/pen/rbqsD
+    loadContents(fileName, parseContents)
+}
+
+// To load contents of a file
+function loadContents(fileName, callback){
+
+    var httpRequest = new XMLHttpRequest()
+
+    function onStateChange() {
+        if(httpRequest.readyState === 4 ){
+            callback(httpRequest.responseText)
+        }
+    }
+
+    httpRequest.onreadystatechange = onStateChange
+    httpRequest.open('GET', fileName, true)
+    httpRequest.send()
+}
+
+// To find the item with barcode in the list
+// return
+//   position when found
+//   -1 when not found
+function findWithBarcode(barcode) {
+    for (var i = 0; i < list.length; i++) {
+        if (barcode == list[i].id) {
+            // found the item
+            return i
+        }
+    }
+    return -1
+}
+
+function detailsOfItem(index) {
+    
+    var details = "id: " + list[index].id
+    details += "<br>"
+    details += list[index].item
+    details += "<br>"
+    details += list[index].description
+    details += "<br>"
+    details += "Rs. " + list[index].price
+    
+    return details
+}
