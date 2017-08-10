@@ -2,8 +2,8 @@ var list
 
 // The initial method called on page load
 function init() {
-    // load details from data.json file
-    loadDataAndParse('data.json')
+    // load details from data file
+    loadDataAndParse('ShoppingItems.json')
 }
 
 function getItemWithBarCode(event) {
