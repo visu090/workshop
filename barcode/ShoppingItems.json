@@ -1,14 +1,38 @@
 [
 	{
-		"id": "8901058852202",
-		"item": "munch nuts",
-		"description": "Crunchy peanut bits",
+		"id": "89008294",
+		"item": "Munch is too gooood",
+		"description": "CRUNCHillicious & Munchy!!!!",
 		"price": 5 
 	},
 	{
-		"id": "9788181913043",
-		"item": "B M Hegde",
-		"description": "The Fine Art of Communication",
+		"id": "8901063094147",
+		"item": "Good Day Biscuts",
+		"description": "Nuts & Badam",
+		"price": 25 
+	},
+	{
+		"id": "8901425022504",
+		"item": "Scale for students",
+		"description": "Camel Scale",
+		"price": 12 
+	},
+	{
+		"id": "9780553176988",
+		"item": "A breif history of time",
+		"description": "STEPHEN HAWKING",
+		"price": 125 
+	},
+	{
+		"id": "9789352533565",
+		"item": "C Programming",
+		"description": "N B Venkateswarlu",
+		"price": 325 
+	},
+	{
+		"id": "9781612680019",
+		"item": "Amir Khan, baby Khan",
+		"description": "Robert Kiyosaki",
 		"price": 125 
 	},
 	{
